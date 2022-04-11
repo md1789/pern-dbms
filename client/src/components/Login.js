@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
+import axios from '../api/axios';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
@@ -25,18 +26,19 @@ const Login = () => {
         setErrMsg('');
     }, [user, pwd])
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http:localhost:5000/events', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                withCredentials: true,
-                body: JSON.stringify(response)
-            })
+            const response = await axios.post("/login",
+                JSON.stringify({ user, pwd }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
 
-            console.log(response);
+            console.log(JSON.stringify(response?.data));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ user, pwd, roles, accessToken });
