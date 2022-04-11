@@ -24,11 +24,10 @@ const Event = () => {
             console.error(error.message);
         }
     }
-
     return (
         <Fragment>
             <h1 className="text-center mt-5">Create Event</h1>
-            <Form className="d-flex" onSubmit={onSubmitForm}>
+            <form className="d-flex" onSubmit={onSubmitForm}>
                 <b-row className="event-form">
                     <b-col sm="10">
                         <b-form-input id="input" placeholder="Provide an event name" onChange={e => setName(e.target.value)}></b-form-input>
@@ -50,7 +49,7 @@ const Event = () => {
                     </b-col>
                 </b-row>
                 <button className="btn btn-success">Add Event</button>
-            </Form>
+            </form>
         </Fragment>
     )
 }

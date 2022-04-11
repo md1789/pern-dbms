@@ -33,7 +33,6 @@ const Edit = ({ event }) => {
         setCategory(event.category);
         setDate(event.date);
     }
-
     return (
         <Fragment>
             <button type="button" className="btn btn-warning" data-toggle="modal" data-target={`#id${event.event_name}`}>Edit</button>

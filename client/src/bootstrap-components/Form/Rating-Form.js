@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 const Form = () => {
     return (
         <Fragment>
-            <Form className="form">
+            <form className="form">
                 <b-row className="my-1">
                     <b-col sm="10">
                         <b-form-input id="input" placeholder="Enter event name"></b-form-input>
@@ -23,7 +23,7 @@ const Form = () => {
                 </b-input-group>
                 <b-form-textarea id="textarea" v-model="text" placeholder="text" rows="3" max-rows="6"></b-form-textarea>
                 <button className="btn btn-outline-submit" type="submit">Submit</button>
-            </Form>
+            </form>
         </Fragment>
     )
 }
