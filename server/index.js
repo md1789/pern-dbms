@@ -34,7 +34,7 @@ app.get('/events', async(req, res) => {
 app.get('/events/:id', async(req, res) => {
     try {
         const { id } = req.params;
-        const event = await pool.query('SELECT * FROM events WHERE name = $1', [event_name]);
+        const event = await pool.query('SELECT * FROM events WHERE event_name = $1', [event_name]);
         res.json(event.rows[0]);
     } catch (error) {
         console.error(error.message);
@@ -46,7 +46,7 @@ app.put('/todos/:id', async(req, res) => {
     try {
         const { id } = req.params;
         const { name, category, description, time, date, location, phone, email } = req.body;
-        const updateEvent = await pool.query('UPDATE events SET name = $1, category = $2, description = $3, time = $4, date = $5, location = $6, phone = $7, email = $8 WHERE name = $9', 
+        const updateEvent = await pool.query('UPDATE events SET name = $1, category = $2, description = $3, time = $4, date = $5, location = $6, phone = $7, email = $8 WHERE event_name = $9', 
         [name, category, description, time, date, location, phone, email, event_name]);
         res.json('Events are updated')
     } catch (error) {
