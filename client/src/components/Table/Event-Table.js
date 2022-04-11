@@ -12,6 +12,14 @@ const EventTable = () => {
         try {
             const response = await fetch('http:localhost:5000/events', {
                 method: 'GET',
+                headers: { 'Accept': 'application/json'},
+                endpoint: 'https:localhost:5000/events',
+                cache: {
+                    key: CACHE_KEY,
+                    strategy: api.cache
+                      .get(api.constants.SIMPLE_SUCCESS)
+                      .buildStrategy(),
+                },
             });
 
             console.log(response);
