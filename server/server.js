@@ -1,20 +1,31 @@
 const pool = require("./db");
 const express = require("express");
 const app = express();
-const path = require('path');
+const path = __dirname + '//html';
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const corsOptions = 'http:localhost:3000';
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
-
+const PORT = process.env.PORT || 3000;
 // middleware: functions that have access to the request object and response object and the next function in the request-response cycle
 app.use(logger);
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.static(path));
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: false }));
+//app.use(express.json());
+
+app.get('/', function (req,res) {
+    res.sendFile(path + "index.html");
+});
 
 // routes
 app.use('/register', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
+
+
 // post events
 app.post('/events', async(req, res) => {
     try {
@@ -86,7 +97,7 @@ app.all('*', (req, res) => {
 
 app.use(errorHandler);
 
-app.listen(5000, () => {
-    console.log('listening on port 5000');
+app.listen(PORT, () => {
+    console.log('listening on port ' + PORT);
 });
 
