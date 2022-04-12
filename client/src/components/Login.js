@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
-import axios from '../api/axios';
+// import axios from '../api/axios';
+import axios from "axios"
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
@@ -31,15 +32,17 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("/login",
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
+            const response = await axios.post("http://localhost:5432/magrathea/auth", {
+                "select": [
+                 "userId","pwd"
+                ],
+                "from": "user",
+                "where" : `username = "` + user + `"`
+              }
             );
 
-            console.log(JSON.stringify(response?.data));
+            console.log(response)
+            // console.log(JSON.stringify(response?.data));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ user, pwd, roles, accessToken });
@@ -57,6 +60,7 @@ const Login = () => {
             } else {
                 setErrMsg("Login Failed");
             }
+            console.log(error)
             errRef.current.focus();
         }
     }
