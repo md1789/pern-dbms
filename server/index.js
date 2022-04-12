@@ -1,7 +1,7 @@
-const pool = require('../../server/db');
-const express = require('express');
+const pool = require("./db");
+const express = require("express");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 
 // middleware: functions that have access to the request object and response object and the next function in the request-response cycle
 app.use(cors());
