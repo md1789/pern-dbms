@@ -1,9 +1,10 @@
 const pool = require("./db");
 const express = require("express");
 const app = express();
+const path = require('path');
 const cors = require("cors");
 const { logger } = require('./middleware/logEvents');
-const errorHandler = require('.middleware/errorHandler');
+const errorHandler = require('./middleware/errorHandler');
 
 // middleware: functions that have access to the request object and response object and the next function in the request-response cycle
 app.use(logger);
