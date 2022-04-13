@@ -8,16 +8,16 @@ const HeaderNavbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#">Home <span className="sr-only"></span></a>
+                            <a className="nav-link" href="/">Home <span className="sr-only"></span></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Events</a>
+                            <a className="nav-link" href="event">Events</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">RSOs</a>
+                            <a className="nav-link" href="rso">RSOs</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">My Profile</a>
+                            <a className="nav-link" href="profile">My Profile</a>
                         </li>
                     </ul>
                 </div>

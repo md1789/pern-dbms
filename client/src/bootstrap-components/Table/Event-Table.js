@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import axios from '../../api/axios';
 
 // create a list item for each event in the events table with a name,
 // category, description, date, time, location, rating, and join button
@@ -6,42 +7,29 @@ const EventTable = () => {
 
     const [events, setEvents] = useState([]);
 
-    // Adds event id to user's event list
-    const joinEvent = async e => {
-        e.preventDefault();
-        try {
-            const response = await fetch('http:localhost:5000/events', {
-                method: 'GET',
-                headers: { 'Accept': 'application/json'},
-                endpoint: 'https:localhost:5000/events',
-                cache: {
-                    key: CACHE_KEY,
-                    strategy: api.cache
-                      .get(api.constants.SIMPLE_SUCCESS)
-                      .buildStrategy(),
-                },
-            });
+    useEffect(() => {
+        getEvents();
+    }, []);
 
-            console.log(response);
-        } catch (error) {
-            console.error(error.message);
-        }
-    }
+    // Adds event id to user's event list
 
     const getEvents = async() => {
         try {
-            const response = await fetch('http://localhost:5000/events');
-            const jsonData = await response.json();
+            const response = await axios.get("/events",
+                JSON.stringify({ events}),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            )
+            console.log(response);
+            const jsonData = response?.data;
 
             setEvents(jsonData);
         } catch (error) {
             console.error(error.message);
         }
     };
-
-    useEffect(() => {
-        getEvents();
-    }, []);
 
     return (
         <Fragment>
@@ -52,6 +40,8 @@ const EventTable = () => {
                         <th scope="col">Date</th>
                         <th scope="col">Time</th>
                         <th scope="col">Location</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
                         <th scope="col">Rating</th>
                     </tr>
                 </thead>
@@ -59,13 +49,13 @@ const EventTable = () => {
                     { events.map(event => (
                         <tr key={event.event_name}>
                             <td>{event.name}</td>
-                            <td>{event.category}</td>
-                            <td>{event.descrioption}</td>
                             <td>{event.date}</td>
                             <td>{event.time}</td>
                             <td>{event.location}</td>
+                            <td>{event.description}</td>
+                            <td>{event.category}</td>
                             <td>{event.rating}</td>
-                            <button type="button" className="btn btn-primary btn-sm" onClick={() => joinEvent(event.event_name)}>Join</button>
+                            <button type="button" className="btn btn-primary btn-sm">Join</button>
                         </tr>
                     ))}
                 </tbody>

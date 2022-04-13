@@ -70,7 +70,13 @@ const Register = () => {
             setMatchPwd('');
 
         } catch (error) {
-            console.error(error.message);
+            if (!error?.response) {
+                setErrMsg('No Server Response');
+            } else if (error.response?.status === 409) {
+                setErrMsg('Username Taken');
+            } else {
+                setErrMsg('Registration Failed')
+            }
             errRef.current.focus();
         }
     }

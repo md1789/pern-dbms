@@ -4,14 +4,15 @@ const app = express();
 const path = __dirname + '//html';
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const corsOptions = 'http:localhost:3000';
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
 const PORT = process.env.PORT || 3000;
+const authController = require('./controllers/authController');
+const registerController = require('./controllers/registerController');
 // middleware: functions that have access to the request object and response object and the next function in the request-response cycle
 app.use(logger);
 app.use(express.static(path));
-app.use(cors(corsOptions));
+const corsCred = app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(express.urlencoded({ extended: false }));
@@ -21,16 +22,17 @@ app.get('/', function (req,res) {
     res.sendFile(path + "index.html");
 });
 
+app.options('*', cors())
 // routes
-app.use('/register', require('./routes/register'));
-app.use('/auth', require('./routes/auth'));
+app.post('/login', authController.handleLogin);
+app.post('/register', registerController.handleNewUser);
 
 
 // post events
 app.post('/events', async(req, res) => {
     try {
        console.log(req.body); 
-       const newEvent =  await pool.query('INSERT INTO events (name, category, description, time, date, location, phone, email) VALUES($1, $2, $3, $4, $5, $6, $7, $8)', 
+       const newEvent =  await pool.query('INSERT INTO events event_name, name, category, "time", description, location, phone, email, date) VALUES($1, $2, $3, $4, $5, $6, $7, $8)', 
        [name, category, description, time, date, location, phone, email]);
        res.json(newEvent.rows[0]);
     } catch (error) {

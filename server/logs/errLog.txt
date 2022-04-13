@@ -1,2 +1,4 @@
 20220412	12:48:14	6c0161a8-f2d6-4a84-98a1-89bd8211d47a	Error: ENOENT: no such file or directory, stat 'D:\dbms\pern\serverserver\htmlindex.html'
 20220412	12:48:56	ae6c47a7-32eb-43ed-894e-ce3e7703fa7c	TypeError: path.join is not a function
+20220412	13:52:11	a701ba23-6600-458d-84bc-65dc7f247c2f	TypeError: path.join is not a function
+20220412	13:52:11	ae43db36-b15a-474e-a663-a36c615fb4b0	TypeError: path.join is not a function
