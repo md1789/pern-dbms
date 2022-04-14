@@ -57,6 +57,24 @@ const EventTable = () => {
         }
     };
 
+    const joinEvent = async(parameterEvent) => {
+        try {
+            const response = await axios.get("/join",
+                JSON.stringify({user, parameterEvent}), // user is in state, parameterEvent is passed in from the button in the map... i think
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            )
+            console.log(response);
+            const jsonData = response?.data;
+
+            setEvent(jsonData);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
     // Adds event id to user's event list
 
     const getEvents = async() => {
@@ -101,7 +119,7 @@ const EventTable = () => {
                             <td>{event.description}</td>
                             <td>{event.category}</td>
                             <td>{event.rating_stars}</td>
-                            <button type="button" className="btn btn-primary btn-sm">Join</button>
+                            <button type="button" className="btn btn-primary btn-sm" onClick={joinEvent(event.event_name)}>Join</button>
                         </tr>
                     ))}
                 </tbody>

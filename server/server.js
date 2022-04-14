@@ -38,6 +38,17 @@ app.post('/users', async(req, res) => {
     }
 })
 
+// inserts into the user_event relation
+app.post('/join', async(req, res) => {
+    try {
+        console.log(req.body);
+        const newUser = await pool.query('INSERT INTO user_event (username, event_name) VALUES ($1, $2)', [username, event_name]);
+        res.json(newUser_event.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
 // get a user
 app.get('/users/:id', async(req, res) => {
     try {

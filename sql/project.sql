@@ -118,3 +118,11 @@ VALUES ('hack', 'React Workshop', 'private', '05:00', 'Learn the basics of React
 INSERT INTO events(
 	event_name, name, category, "time", description, location, phone, email, date, rating_stars)
 	VALUES ('optics', 'CREOL Optics Day', 'private', '02:00', 'Meet withh Students, professors, and industrial members!' , (28.60137201783783, -81.19705121398373), '', 'benjamin.logan@knights.ucf.edu', '4/15/22', 5);
+
+CREATE TABLE user_event(
+    username VARCHAR(40),
+    event_name VARCHAR(40),
+    PRIMARY KEY (username, event_name),
+    FOREIGN KEY (username) REFERENCES users,
+    FOREIGN KEY (event_name) REFERENCES events
+);
