@@ -6,10 +6,56 @@ import axios from '../../api/axios';
 const EventTable = () => {
 
     const [events, setEvents] = useState([]);
+    const [event, setEvent] = useState([]);
+    const [user, setUser] = useState([]);
+    const [universityMatch, setUniversityMatch] = useState(false);
 
     useEffect(() => {
         getEvents();
     }, []);
+
+    useEffect(() => {
+        getUser();
+    }, []);
+
+    useEffect(() => {
+        setUniversityMatch(user.university_name === event.university_name);
+    }, [user, events])
+
+    const getUser = async () => {
+        try {
+            const response = await axios.get("/users:id",
+                JSON.stringify({ user}),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            )
+            console.log(response);
+            const userData = response?.data;
+
+            setUser(userData);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    const getEvent = async() => {
+        try {
+            const response = await axios.get("/events:id",
+                JSON.stringify({ event}),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            )
+            console.log(response);
+            const jsonData = response?.data;
+
+            setEvent(jsonData);
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
 
     // Adds event id to user's event list
 

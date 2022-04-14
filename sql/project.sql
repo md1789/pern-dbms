@@ -11,8 +11,10 @@ CREATE TABLE events(
     email varchar(255),
     date varchar(255),
     rating_stars INTEGER,
+    university_name VARCHAR(40),
     PRIMARY KEY (event_name),
-    FOREIGN KEY (rating_stars) REFERENCES rates
+    FOREIGN KEY (rating_stars) REFERENCES rates,
+    FOREIGN KEY (university_name) REFERENCES university
 );
 
 CREATE TABLE users(
