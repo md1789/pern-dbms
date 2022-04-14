@@ -25,7 +25,7 @@ const RSOTable = () => {
             console.log(response);
             const jsonData = response?.data;
 
-            setUser(jsonData);
+            setRSO(jsonData);
         } catch (error) {
             console.error(error.message);
         }
@@ -37,14 +37,15 @@ const RSOTable = () => {
                 <thead className="table-dark">
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Number of Members</th>
                     </tr>
                 </thead>
                 <tbody>
                     { RSO.map(name => (
-                        <tr key={name.name}>
-                            <td>{name.address}</td>
-                            <button type="button" className="btn btn-primary btn-sm">Join</button>
+                        <tr key={name.rso_name}>
+                            <td>{name.rso_name}</td>
+                            <td>{name.num_members}</td>
+                            <button type="button" className="btn btn-success btn-sm">Join</button>
                         </tr>
                     ))}
                 </tbody>

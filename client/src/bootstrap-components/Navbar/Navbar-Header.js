@@ -17,7 +17,10 @@ const HeaderNavbar = () => {
                             <a className="nav-link" href="rso">RSOs</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="profile">My Profile</a>
+                            <a className="nav-link" href="admin">Admin</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="superadmin">Super Admin</a>
                         </li>
                     </ul>
                 </div>

@@ -29,6 +29,7 @@ const Register = () => {
     const [success, setSuccess] = useState(false);
 
     const [universities, setUniversities] = useState([]);
+    const [university, setUniversity] = useState('');
     const [userData, setUserData] = useState('');
 
     useEffect(() => {
@@ -196,7 +197,7 @@ const Register = () => {
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
                         </p>
-
+                        
                         <div className="dropdown">
                             <select className="form-select" onSelect={(e) => setUniversities(e.target.value)}>
                                 { universities.map(id => (

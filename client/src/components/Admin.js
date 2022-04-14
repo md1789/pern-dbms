@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import HeaderNavbar from '../bootstrap-components/Navbar/Navbar-Header';
-import Event from '../bootstrap-components/Form/Event-Creation';
 import Edit from '../bootstrap-components/Modal/Event-Edit';
+import NewEventNavbar from '../bootstrap-components/Navbar/New-Event-Navbar';
 const Admin = () => {
   return (
-    <Fragment>
+    <div>
         <HeaderNavbar />
-        <Event />
-        <Edit />
-    </Fragment>
+        <NewEventNavbar />
+        <h1>Welcome to the Admin page!</h1>
+    </div>
   )
 }
 

@@ -9,7 +9,8 @@ import Unauthorized from './components/Unauthorized';
 import Register from './components/Register';
 import Missing from './components/Missing';
 import Event from './components/Event';
-import Profile from './components/Profile';
+import SuperAdmin from './components/SuperAdmin';
+import RSO from './components/RSO';
 
 const user = {
   roles: ['user'],
@@ -17,12 +18,12 @@ const user = {
 };
 
 const admin = {
-  roles: ['user', 'admin'],
+  roles: ['admin'],
   rights: ['can_view_events', 'can_view_rsos', 'can_edit_events', 'can_create_events']
 };
 
 const superadmin = {
-  roles: ['user', 'admin', 'superadmin'],
+  roles: ['superadmin'],
   rights: ['can_view_events', 'can_view_rsos', 'can_edit_events', 'can_create_events', 'can_create_accounts']
 };
 
@@ -39,11 +40,15 @@ function App() {
         <Route element={<RequireAuth allowedRoles={[user, admin, superadmin]} />}>
           <Route path="/" element={<Home />} />
           <Route path="event" element={<Event />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="rso" element={<RSO />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={[admin, superadmin]} />}>
           <Route path="admin" element={<Admin />} />
+        </Route>
+
+        <Route element={<RequireAuth allowedRoles={[superadmin]} />}>
+          <Route path="superadmin" element={<SuperAdmin />} />
         </Route>
 
         <Route path="*" element={<Missing />} />
