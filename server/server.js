@@ -27,12 +27,54 @@ app.options('*', cors())
 app.post('/login', authController.handleLogin);
 app.post('/register', registerController.handleNewUser);
 
+// create a user
+app.post('/users', async(req, res) => {
+    try {
+        console.log(req.body);
+        const newUser = await pool.query('INSERT INTO users (username, password, university_name) VALUES ($1, $2, $3)', [username, password, university_name]);
+        res.json(newUser.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
+// get a user
+app.get('/users/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        res.json(user.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+// create a university
+app.post('/universities', async(req, res) => {
+    try {
+        console.log(req.body);
+        const newUniversity = await pool.query('INSERT INTO university (university_name, address) VALUES ($1, $2)', [university_name, address]);
+        res.json(newUniversity.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
+// get universities
+app.get('/universities', async(req, res) => {
+    try {
+       const allUniversities = await pool.query('SELECT * FROM university');
+       res.json(allUniversities.rows); 
+    } catch (error) {
+        console.error(error.message);
+    }
+});
 
 // post events
 app.post('/events', async(req, res) => {
     try {
        console.log(req.body); 
-       const newEvent =  await pool.query('INSERT INTO events event_name, name, category, "time", description, location, phone, email, date) VALUES($1, $2, $3, $4, $5, $6, $7, $8)', 
+       const newEvent =  await pool.query('INSERT INTO events (event_name, name, category, "time", description, location, phone, email, date) VALUES($1, $2, $3, $4, $5, $6, $7, $8)', 
        [name, category, description, time, date, location, phone, email]);
        res.json(newEvent.rows[0]);
     } catch (error) {

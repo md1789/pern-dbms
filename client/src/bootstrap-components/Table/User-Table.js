@@ -3,9 +3,9 @@ import axios from '../../api/axios';
 
 // create a list item for each event in the events table with a name,
 // category, description, date, time, location, rating, and join button
-const EventTable = () => {
+const UserTable = () => {
 
-    const [events, setEvents] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         getEvents();
@@ -13,10 +13,10 @@ const EventTable = () => {
 
     // Adds event id to user's event list
 
-    const getEvents = async() => {
+    const getUser = async() => {
         try {
-            const response = await axios.get("/events",
-                JSON.stringify({ events}),
+            const response = await axios.get("/users",
+                JSON.stringify({ user}),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -25,7 +25,7 @@ const EventTable = () => {
             console.log(response);
             const jsonData = response?.data;
 
-            setEvents(jsonData);
+            setUser(jsonData);
         } catch (error) {
             console.error(error.message);
         }
@@ -42,19 +42,17 @@ const EventTable = () => {
                         <th scope="col">Location</th>
                         <th scope="col">Description</th>
                         <th scope="col">Category</th>
-                        <th scope="col">Rating</th>
                     </tr>
                 </thead>
                 <tbody>
-                    { events.map(event => (
-                        <tr key={event.event_name}>
-                            <td>{event.name}</td>
-                            <td>{event.date}</td>
-                            <td>{event.time}</td>
-                            <td>{event.location}</td>
-                            <td>{event.description}</td>
-                            <td>{event.category}</td>
-                            <td>{event.rating_stars}</td>
+                    { user.map(name => (
+                        <tr key={name.event_name}>
+                            <td>{name.name}</td>
+                            <td>{name.date}</td>
+                            <td>{name.time}</td>
+                            <td>{name.location}</td>
+                            <td>{name.description}</td>
+                            <td>{name.category}</td>
                             <button type="button" className="btn btn-primary btn-sm">Join</button>
                         </tr>
                     ))}
@@ -64,4 +62,4 @@ const EventTable = () => {
     )
 };
 
-export default EventTable;
+export default UserTable;
