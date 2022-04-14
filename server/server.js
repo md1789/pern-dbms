@@ -25,7 +25,7 @@ app.get('/', function (req,res) {
 app.options('*', cors())
 // routes
 app.post('/login', authController.handleLogin);
-app.post('/register', registerController.handleNewUser);
+app.post('/users', registerController.handleNewUser);
 
 // create a user
 app.post('/users', async(req, res) => {
@@ -37,6 +37,47 @@ app.post('/users', async(req, res) => {
         console.error(error.message);
     }
 })
+
+// add events to user
+app.post('/userevents', async(req, res) => {
+    try {
+        console.log(req.body);
+        const newUserEvent = await pool.query('INSERT INTO user_event (username, event_name) VALUES ($1, $2)', [username, event_name]);
+        res.json(newUserEvent.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
+// add rso
+app.post('/rsos', async(req, res) => {
+    try {
+        console.log(req.body);
+        const newRSO = await pool.query('INSERT INTO rso (name, address) VALUES ($1, $2)', [name, address]);
+        res.json(newRSO.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
+app.get('/rsos', async(req, res) => {
+    try {
+       const allRSOs = await pool.query('SELECT * FROM rso');
+       res.json(allRSOs.rows); 
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+// get user events
+app.get('/userevents', async(req, res) => {
+    try {
+       const allUserEvents = await pool.query('SELECT * FROM user_event');
+       res.json(allUserEvents.rows); 
+    } catch (error) {
+        console.error(error.message);
+    }
+});
 
 // get a user
 app.get('/users/:id', async(req, res) => {
@@ -74,7 +115,7 @@ app.get('/universities', async(req, res) => {
 app.post('/events', async(req, res) => {
     try {
        console.log(req.body); 
-       const newEvent =  await pool.query('INSERT INTO events (event_name, name, category, "time", description, location, phone, email, date) VALUES($1, $2, $3, $4, $5, $6, $7, $8)', 
+       const newEvent =  await pool.query('INSERT INTO events (event_name, name, category, "time", description, location, phone, email, date, rating_stars) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)', 
        [name, category, description, time, date, location, phone, email]);
        res.json(newEvent.rows[0]);
     } catch (error) {
@@ -127,17 +168,6 @@ app.delete('/events/:id', async(req, res) => {
         console.error(error.message);
     }
 })
-
-app.all('*', (req, res) => {
-    res.status(404);
-    if (req.accepts('html')) {
-        res.sendFile(path.join(__dirname, 'html', '404.html'));
-    } else if (req.accepts('json')) {
-        res.json({ "error": "404 Not Found" });
-    } else {
-        res.type('txt').send("404 Not Found");
-    }
-});
 
 app.use(errorHandler);
 

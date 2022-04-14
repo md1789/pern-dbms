@@ -28,6 +28,9 @@ const Register = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    const [universities, setUniversities] = useState([]);
+    const [userData, setUserData] = useState('');
+
     useEffect(() => {
         userRef.current.focus();
     }, [])
@@ -45,6 +48,10 @@ const Register = () => {
         setErrMsg('');
     }, [user, pwd, matchPwd])
 
+    useEffect(() => {
+        getUniverities();
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -56,7 +63,7 @@ const Register = () => {
             return;
         }
         try {
-            const response = await axios.post("/register",
+            const response = await axios.post("/users",
                 JSON.stringify({ user, pwd }),
                 {
                     headers: { 'Content-Type': 'application/json' },
@@ -80,6 +87,29 @@ const Register = () => {
             }
             errRef.current.focus();
         }
+    }
+
+    const getUniverities = async () => {
+        try {
+            const response = await axios.get("/universities",
+                JSON.stringify({ universities}),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            )
+            console.log(response);
+            const jsonData = response?.data;
+
+            setUniversities(jsonData);
+
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    const handleUser = () => {
+        setUserData([user, pwd, universities.university_name])
     }
 
     return (
@@ -167,10 +197,16 @@ const Register = () => {
                             Must match the first password input field.
                         </p>
 
-                        <UniversityDropdown />
+                        <div className="dropdown">
+                            <select className="form-select" onSelect={(e) => setUniversities(e.target.value)}>
+                                { universities.map(id => (
+                                    <option value={id.university_name}>{id.university_name}</option>
+                                ))}
+                            </select>
+                        </div>
                         <br />
 
-                        <button type="submit" className="btn btn-success" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <button type="submit" className="btn btn-success" disabled={!validName || !validPwd || !validMatch ? true : false} onClick={handleUser}>Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />

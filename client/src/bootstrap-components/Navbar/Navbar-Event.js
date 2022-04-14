@@ -5,7 +5,7 @@ const EventNavbar = () => {
     return (
         <Fragment>
             <nav className="navbar navbar-dark bg-dark">
-                <h1 className="navbar-title">Events</h1>
+                <h2 className="text-white">Events</h2>
                 <form className="form-inline">
                     <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                     <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -15,4 +15,4 @@ const EventNavbar = () => {
     )
 }
 
-export default EventNavbar
+export default EventNavbar;

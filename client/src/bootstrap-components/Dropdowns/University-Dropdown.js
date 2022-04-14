@@ -30,14 +30,11 @@ const UniversityDropdown = () => {
     
     return (
     <div className="dropdown">
-        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Choose University
-        </button>
-        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <select className="form-select">
             { universities.map(id => (
                 <option value={id.university_name}>{id.university_name}</option>
             ))}
-        </div>
+        </select>
     </div>
     )
 }

@@ -9,6 +9,7 @@ import Unauthorized from './components/Unauthorized';
 import Register from './components/Register';
 import Missing from './components/Missing';
 import Event from './components/Event';
+import Profile from './components/Profile';
 
 const user = {
   roles: ['user'],
@@ -38,6 +39,7 @@ function App() {
         <Route element={<RequireAuth allowedRoles={[user, admin, superadmin]} />}>
           <Route path="/" element={<Home />} />
           <Route path="event" element={<Event />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={[admin, superadmin]} />}>

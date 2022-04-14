@@ -86,11 +86,19 @@ CREATE TABLE isApartOf(
     FOREIGN KEY (university_name) REFERENCES university
 );
 
+CREATE TABLE user_event(
+    username VARCHAR(40),
+    event_name VARCHAR(40),
+    PRIMARY KEY (username, event_name),
+    FOREIGN KEY (username) REFERENCES users,
+    FOREIGN KEY (event_name) REFERENCES events
+);
+
 INSERT INTO events(
 	event_name, name, category, "time", description, location, phone, email, date)
 	VALUES ('choir_concert', 'UCF Choir Concert', 'public',
 		   '07:30', 'The UCF Chamber Singers, SoAl and TeBa choruses, and the University Singers, along with the new UCF Community Choir and Children’s Choir, sing songs of unity, joy and friendship.',
-		   (28.53840582664925, -81.376897), '14078390119', 'boxoffice@ucf.edu', '4/15/22');
+		   (28.53840582664925, -81.376897), '4078390119', 'boxoffice@ucf.edu', '4/15/22');
 
 INSERT INTO events(
 	event_name, name, category, "time", description, location, phone, email, date)
@@ -102,17 +110,17 @@ INSERT INTO events(
 	event_name, name, category, "time", description, location, phone, email, date)
 	VALUES ('networking', 'National Networking Knight', 'public',
 		   '05:45', 'Join us as we network with UCF alumni professionals in-person, on one evening, in multiple cities across the nation!',
-		   (28.606960445755725, -81.19857833862173), '14078232586', 'AshleyC.Turner@ucf.edu', '4/13/22',
+		   (28.606960445755725, -81.19857833862173), '4078232586', 'AshleyC.Turner@ucf.edu', '4/13/22');
 
 INSERT INTO events(
 	event_name, name, category, "time", description, location, phone, email, date)
 	VALUES ('band_concert', 'UCF Band Concert', 'public',
 		   '07:30', 'The UCF Wind Ensemble and Symphonic Band present an exciting evening of diverse and expressive music that explores various genres and styles.',
-		   (28.53840582664925, -81.376897), '14078390119', 'boxoffice@ucf.edu', '4/13/22');
+		   (28.53840582664925, -81.376897), '4078390119', 'boxoffice@ucf.edu', '4/13/22');
 
 INSERT INTO events(
 	event_name, name, category, "time", description, location, phone, email, date, rating_stars)
-	VALUES ('chipper', 'Chillin with Chipper', 'public', '01:00', 'This is your opportunity to meet the UCFPD therapy dog, Chipper!' , (28.597028414788053, -81.20333922406047), '', 'policecr@ucf.edu', 5);
+	VALUES ('chipper', 'Chillin with Chipper', 'public', '01:00', 'This is your opportunity to meet the UCFPD therapy dog, Chipper!' , (28.597028414788053, -81.20333922406047), '', 'policecr@ucf.edu', '4/13/22', 5);
 
 INSERT INTO events(
 event_name, name, category, "time", description, location, phone, email, date, rating_stars)
@@ -121,3 +129,4 @@ VALUES ('hack', 'React Workshop', 'private', '05:00', 'Learn the basics of React
 INSERT INTO events(
 	event_name, name, category, "time", description, location, phone, email, date, rating_stars)
 	VALUES ('optics', 'CREOL Optics Day', 'private', '02:00', 'Meet withh Students, professors, and industrial members!' , (28.60137201783783, -81.19705121398373), '', 'benjamin.logan@knights.ucf.edu', '4/15/22', 5);
+

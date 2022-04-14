@@ -1,5 +1,7 @@
+import { set } from 'date-fns';
 import React, { Fragment, useEffect, useState } from 'react';
 import axios from '../../api/axios';
+import EventNavbar from '../Navbar/Navbar-Event';
 
 // create a list item for each event in the events table with a name,
 // category, description, date, time, location, rating, and join button
@@ -7,7 +9,9 @@ const EventTable = () => {
 
     const [events, setEvents] = useState([]);
     const [event, setEvent] = useState([]);
+    const [eventName, setEventName] = useState([]);
     const [user, setUser] = useState([]);
+    const [userEvent, setUserEvent] = useState([]);
     const [universityMatch, setUniversityMatch] = useState(false);
 
     useEffect(() => {
@@ -16,6 +20,14 @@ const EventTable = () => {
 
     useEffect(() => {
         getUser();
+    }, [user]);
+
+    useEffect(() => {
+        getUser();
+    }, [event]);
+
+    useEffect(() => {
+        joinEvent();
     }, []);
 
     useEffect(() => {
@@ -34,15 +46,17 @@ const EventTable = () => {
             console.log(response);
             const userData = response?.data;
 
-            setUser(userData);
+            setUser(userData.username);
         } catch (error) {
             console.error(error.message);
         }
     }
-    const getEvent = async() => {
+
+    const joinEvent = async(e) => {
+        e.preventDefault();
         try {
-            const response = await axios.get("/events:id",
-                JSON.stringify({ event}),
+            const response = await axios.post("/userevents",
+                JSON.stringify({user, event}), // user is in state, parameterEvent is passed in from the button in the map... i think
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -50,12 +64,13 @@ const EventTable = () => {
             )
             console.log(response);
             const jsonData = response?.data;
-
-            setEvent(jsonData);
+            setUser(user);
+            set(event);
+            setUserEvent(jsonData);
         } catch (error) {
             console.error(error.message);
         }
-    };
+    }
 
     // Adds event id to user's event list
 
@@ -79,6 +94,7 @@ const EventTable = () => {
 
     return (
         <Fragment>
+            <EventNavbar />
             <table className="table table-striped table-dark">
                 <thead className="table-dark">
                     <tr>
@@ -101,7 +117,7 @@ const EventTable = () => {
                             <td>{event.description}</td>
                             <td>{event.category}</td>
                             <td>{event.rating_stars}</td>
-                            <button type="button" className="btn btn-primary btn-sm">Join</button>
+                            <button type="button" className="btn btn-success" onChange={(e) => setUserEvent(e.target.value)} onClick={joinEvent}>Join</button>
                         </tr>
                     ))}
                 </tbody>
