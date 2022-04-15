@@ -12,3 +12,4 @@
 20220413	22:07:14	4d3b2523-5731-4210-ab6c-f89a81d87897	TypeError: path.join is not a function
 20220413	22:13:24	6e57147a-2fa4-431b-ba26-de4d6ee02b37	TypeError: path.join is not a function
 20220413	22:13:42	43907a1e-008e-4400-bfa5-4f13316ad47c	TypeError: path.join is not a function
+20220415	14:28:49	1fe2cd2f-255e-4cbf-88ed-1942f3078203	SyntaxError: Unexpected token ( in JSON at position 144

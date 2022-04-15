@@ -1,7 +1,7 @@
 const pool = require("./db");
 const express = require("express");
 const app = express();
-const path = __dirname + '//html';
+const path = __dirname + './html';
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { logger } = require('./middleware/logEvents');
@@ -29,21 +29,20 @@ app.post('/login', authController.handleLogin);
 app.post('/users', registerController.handleNewUser);
 
 // create a user
-app.post('/users', async(req, res) => {
-    try {
-        console.log(req.body);
-        const newUser = await pool.query('INSERT INTO users (username, password, university_name) VALUES ($1, $2, $3)', [username, password, university_name]);
-        res.json(newUser.rows[0]);
-    } catch (error) {
-        console.error(error.message);
-    }
-})
 
 // add events to user
 app.post('/userevents', async(req, res) => {
     try {
+        const name = req.body.name;
+        const category = req.body.category;
+        const location = req.body.location;
+        const time = req.body.time;
+        const date = req.body.date;
+        const description = req.body.description;
+        const username = req.body.username;
+        const event_name = req.body.event_name;
         console.log(req.body);
-        const newUserEvent = await pool.query('INSERT INTO user_event (username, event_name) VALUES ($1, $2)', [username, event_name]);
+        const newUserEvent = await pool.query('INSERT INTO user_event (name, category, username, location, time, date, description, event_name) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [name, category, username, location, time, date, description, event_name]);
         res.json(newUserEvent.rows[0]);
     } catch (error) {
         console.error(error.message);
@@ -54,7 +53,9 @@ app.post('/userevents', async(req, res) => {
 app.post('/rsos', async(req, res) => {
     try {
         console.log(req.body);
-        const newRSO = await pool.query('INSERT INTO rso (name, address) VALUES ($1, $2)', [name, address]);
+        const rso_name = req.body.rso_name;
+        const num_members = req.body.num_members;
+        const newRSO = await pool.query('INSERT INTO rso (rso_name, num_members) VALUES ($1, $2)', [rso_name, num_members]);
         res.json(newRSO.rows[0]);
     } catch (error) {
         console.error(error.message);
@@ -95,6 +96,8 @@ app.get('/users/:id', async(req, res) => {
 app.post('/superadmin', async(req, res) => {
     try {
         console.log(req.body);
+        const university_name = req.body.university_name;
+        const address = req.body.address;
         const newUniversity = await pool.query('INSERT INTO university (university_name, address) VALUES ($1, $2)', [university_name, address]);
         res.json(newUniversity.rows[0]);
     } catch (error) {
@@ -115,9 +118,20 @@ app.get('/superadmin', async(req, res) => {
 // post events
 app.post('/events', async(req, res) => {
     try {
-       console.log(req.body); 
-       const newEvent =  await pool.query('INSERT INTO events (event_name, name, category, "time", description, location, phone, email, date, rating_stars) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)', 
-       [name, category, description, time, date, location, phone, email]);
+       console.log(req.body);
+       const event_name = req.body.event_name;
+       const name = req.body.name;
+       const category = req.body.category;
+       const description = req.body.description;
+       const time = req.body.time;
+       const date = req.body.date;
+       const location = req.body.location;
+       const phone = req.body.phone;
+       const email = req.body.email;
+       const rating_stars = req.body.rating_stars;
+       const university_name = req.body.University_name;
+       const newEvent =  await pool.query('INSERT INTO events (event_name, category, time, description, location, phone, email, date, rating_stars, university_name, name) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', 
+       [event_name, category, time, description, location, phone, email, date, rating_stars, university_name, name]);
        res.json(newEvent.rows[0]);
     } catch (error) {
         console.error(error.message);
