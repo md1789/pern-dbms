@@ -4,16 +4,18 @@ import axios from '../../api/axios';
 
 const NewuniversityNavbar = () => {
 
-  const [universityName, setUniversityName] = useState([]);
-  const [universityAddress, setUniversityAddress] = useState([]);
+  const [universityName, setUniversityName] = useState('');
+  const [universityAddress, setUniversityAddress] = useState();
 
   const createuniversity = async () => {
     try {
-      const response = await axios.post("/universities",
+      const response = await axios.post("/superadmin",
           JSON.stringify({universityName, universityAddress}),
           {
-              headers: { 'Content-Type': 'application/json' },
-              withCredentials: true
+              headers: { 'Content-Type': 'application/json',
+               'Access-Control-Allow-Origin': 'http://localhost:3000'},
+              withCredentials: true,
+              
           }
       )
       setUniversityName('');
@@ -37,7 +39,7 @@ const NewuniversityNavbar = () => {
         <input 
           type="text" 
           id="universityAddress"
-          autocomplete="off"
+          autoComplete="off"
           onChange={(e) => setUniversityAddress(e.target.value)}
           required
         />
