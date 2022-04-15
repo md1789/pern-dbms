@@ -12,17 +12,14 @@ CREATE TABLE events(
     date varchar(255),
     rating_stars INTEGER,
     university_name VARCHAR(40),
-    PRIMARY KEY (event_name),
-    FOREIGN KEY (rating_stars) REFERENCES rates,
-    FOREIGN KEY (university_name) REFERENCES university
+    PRIMARY KEY (event_name)
 );
 
 CREATE TABLE users(
     username VARCHAR(40),
     password VARCHAR(40),
     university_name VARCHAR(40),
-    PRIMARY KEY (username),
-    FOREIGN KEY (university_name) REFERENCES university
+    PRIMARY KEY (username)
 );
 
 CREATE TABLE rates(

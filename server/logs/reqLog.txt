@@ -932,3 +932,9 @@
 20220414	21:18:42	dffbe824-d7f4-42fb-9777-24d1d494fb66	GET	http://localhost:3001	/events
 20220414	21:18:42	d90e83ef-5983-4eb2-bafb-3a9bfdf37a85	GET	http://localhost:3001	/users:id
 20220414	21:18:45	555574a6-7757-411f-bb41-3bb9813638b0	POST	http://localhost:3001	/login
+20220415	13:12:39	4183ec40-6750-415f-9ed7-caff3ef34fb2	POST	http://localhost:3000	/users
+20220415	13:12:42	df74561b-9776-4b03-bc0f-26f13e2e5608	GET	undefined	/login
+20220415	13:14:34	b49ed755-698e-45d7-b6b7-ddab779acd42	POST	http://localhost:3000	/login
+20220415	13:14:34	6909b369-160c-4b9e-80d6-7dcba1db93fd	GET	undefined	/static/media/ucf_logo.aff8b188bb67ae40b11b.png
+20220415	13:14:34	51d54418-e507-4557-a843-f66ee8eb489b	GET	undefined	/favicon.ico
+20220415	13:14:37	6d5bb96e-f66e-467a-9bc8-5c1a3a63e304	GET	undefined	/event
