@@ -20,6 +20,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req,res) {
     res.sendFile(path + "index.html");
+    // res.render('index', {});
+});
+
+app.get('/event', function (req,res) {
+    res.sendFile(path + "index.html");
+    // res.render('index', {});
 });
 
 app.options('*', cors())

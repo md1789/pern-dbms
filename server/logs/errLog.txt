@@ -12,3 +12,12 @@
 20220413	22:07:14	4d3b2523-5731-4210-ab6c-f89a81d87897	TypeError: path.join is not a function
 20220413	22:13:24	6e57147a-2fa4-431b-ba26-de4d6ee02b37	TypeError: path.join is not a function
 20220413	22:13:42	43907a1e-008e-4400-bfa5-4f13316ad47c	TypeError: path.join is not a function
+20220415	00:14:24	03ba755f-876e-42ad-9c14-882c3905ff1a	Error: No default engine was specified and no extension was provided.
+20220415	00:20:32	042c28e0-924d-4f97-802b-c3bd267f98a8	Error: ENOENT: no such file or directory, stat 'D:\Documents\VSCode\pern-dbms\server\htmlindex.html'
+20220415	00:21:37	61f53fc0-d9e4-43f9-9a43-61ca383a7496	Error: ENOENT: no such file or directory, stat 'D:\Documents\VSCode\pern-dbms\server\htmlindex.html'
+20220415	00:23:43	8028e77a-9834-4ff1-ad16-2f77bd4912d5	Error: ENOENT: no such file or directory, stat 'D:\Documents\VSCode\pern-dbms\server\htmlindex.html'
+20220415	00:23:52	850e3157-b7de-4a8e-b134-f20000b388e5	Error: ENOENT: no such file or directory, stat 'D:\Documents\VSCode\pern-dbms\server\htmlindex.html'
+20220415	00:26:30	623632a7-6c8f-4a30-a88e-a4c76d778058	Error: ENOENT: no such file or directory, stat 'D:\Documents\VSCode\pern-dbms\server\htmlindex.html'
+20220415	00:29:22	70f9a1a1-dd6d-469c-a478-7179e0735069	Error: ENOENT: no such file or directory, stat 'D:\Documents\VSCode\pern-dbms\server\htmlindex.html'
+20220415	00:33:08	c5eab096-2c4d-4888-aab1-922839db72d6	Error: No default engine was specified and no extension was provided.
+20220415	00:34:01	7afca00a-da9d-44e0-bf22-3e74004402b6	Error: No default engine was specified and no extension was provided.
