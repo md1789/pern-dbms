@@ -4,13 +4,18 @@ import axios from '../../api/axios';
 
 const NewuniversityNavbar = () => {
 
-  const [universityName, setUniversityName] = useState('');
-  const [universityAddress, setUniversityAddress] = useState();
+  const [university_name, setUniversityName] = useState('');
+  const [address, setUniversityAddress] = useState();
 
-  const createuniversity = async () => {
+  useEffect(() => {
+    createUniversity();
+  }, [university_name, address])
+
+  const createUniversity = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post("/superadmin",
-          JSON.stringify({universityName, universityAddress}),
+          JSON.stringify({university_name, address}),
           {
               headers: { 'Content-Type': 'application/json',
                'Access-Control-Allow-Origin': 'http://localhost:3000'},
@@ -28,23 +33,27 @@ const NewuniversityNavbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark">
+      <form onSubmit={createUniversity}>
+      <label htmlFor="university_name">University Name:</label>
         <input 
           type="text" 
-          id="universityname"
+          id="university_name"
           autocomplete="off"
           onChange={(e) => setUniversityName(e.target.value)}
+          value={university_name}
           required
         />
+        <label htmlFor="address">Address:</label>
         <input 
           type="text" 
-          id="universityAddress"
+          id="address"
           autoComplete="off"
           onChange={(e) => setUniversityAddress(e.target.value)}
+          value={address}
           required
         />
-        <button type="submit" className="btn btn-success" onClick={createuniversity}>Create university</button>
-      </nav>
+        <button type="submit" className="btn btn-success">Create university</button>
+      </form>
     </div>
   )
 }

@@ -4,26 +4,37 @@ import axios from '../../api/axios';
 
 const NewEventNavbar = () => {
 
-  const [eventName, setEventName] = useState([]);
-  const [eventCategory, setEventCategory] = useState([]);
-  const [eventLocation, setEventLocation] = useState([]);
-  const [eventTime, setEventTime] = useState([]);
-  const [eventDate, setEventDate] = useState([]);
+  const [event_name, setevent_name] = useState([]);
+  const [name, setName] = useState([]);
+  const [description, setDescription] = useState([]);
+  const [university_name, setuniversity_name] = useState([]);
+  const [category, setcategory] = useState([]);
+  const [location, setlocation] = useState([]);
+  const [time, settime] = useState([]);
+  const [date, setdate] = useState([]);
+  const [phone, setPhone] = useState([]);
+  const [email, setEmail] = useState([]);
+  const [rating_stars, setrating_stars] = useState([]);
 
   const createEvent = async () => {
     try {
       const response = await axios.post("/events",
-          JSON.stringify({eventName, eventCategory, eventLocation, eventTime, eventDate}),
+          JSON.stringify({event_name, category, time, description, location, phone, email, date, rating_stars, university_name, name}),
           {
               headers: { 'Content-Type': 'application/json' },
               withCredentials: true
           }
       )
-      setEventName('');
-      setEventCategory('');
-      setEventLocation('');
-      setEventTime('');
-      setEventDate('');
+      setevent_name('');
+      setName('');
+      setcategory('');
+      setlocation('');
+      settime('');
+      setDescription('');
+      setPhone('');
+      setEmail('');
+      setuniversity_name('');
+      setdate('');
       console.log(response);
     } catch (error) {
       console.error(error.message);
@@ -32,44 +43,108 @@ const NewEventNavbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark">
+      <form onSubmit={createEvent}>
+        <label htmlFor="event_name">Event ID:</label>
         <input 
           type="text" 
-          id="eventname"
+          id="event_name"
           autocomplete="off"
-          onChange={(e) => setEventName(e.target.value)}
+          onChange={(e) => setevent_name(e.target.value)}
+          value={event_name}
           required
         />
+        <label htmlFor="category">Event Category:</label>
         <input 
           type="text" 
-          id="eventcategory"
+          id="category"
           autocomplete="off"
-          onChange={(e) => setEventCategory(e.target.value)}
+          onChange={(e) => setcategory(e.target.value)}
+          value={category}
           required
         />
+        <label htmlFor="time">Event Time:</label>
         <input 
           type="text" 
-          id="eventlocation"
+          id="time"
           autocomplete="off"
-          onChange={(e) => setEventLocation(e.target.value)}
+          onChange={(e) => settime(e.target.value)}
+          value={time}
           required
         />
+        <label htmlFor="description">Event Description:</label>
         <input 
           type="text" 
-          id="eventtime"
+          id="description"
           autocomplete="off"
-          onChange={(e) => setEventTime(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
           required
         />
+        <label htmlFor="location">Event Location:</label>
         <input 
           type="text" 
-          id="eventdate"
+          id="location"
           autocomplete="off"
-          onChange={(e) => setEventDate(e.target.value)}
+          onChange={(e) => setlocation(e.target.value)}
+          value={location}
           required
         />
-        <button type="submit" className="btn btn-success" >Create Event<FontAwesomeIcon icon="fa-solid fa-plus" /></button>
-      </nav>
+        <label htmlFor="phone">Event Phone:</label>
+        <input 
+          type="text" 
+          id="phone"
+          autocomplete="off"
+          onChange={(e) => setPhone(e.target.value)}
+          value={phone}
+          required
+        />
+        <label htmlFor="email">Event Email:</label>
+        <input 
+          type="text" 
+          id="email"
+          autocomplete="off"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          required
+        />
+        <label htmlFor="date">Event Date:</label>
+        <input 
+          type="text" 
+          id="date"
+          autocomplete="off"
+          onChange={(e) => setdate(e.target.value)}
+          value={date}
+          required
+        />
+        <label htmlFor="rating">Event Rating:</label>
+        <input 
+          type="text" 
+          id="rating"
+          autocomplete="off"
+          onChange={(e) => setrating_stars(e.target.value)}
+          value={rating_stars}
+          required
+        />
+        <label htmlFor="university">University:</label>
+        <input 
+          type="text" 
+          id="university"
+          autocomplete="off"
+          onChange={(e) => setuniversity_name(e.target.value)}
+          value={university_name}
+          required
+        />
+        <label htmlFor="name">Event Name:</label>
+        <input 
+          type="text" 
+          id="name"
+          autocomplete="off"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+          required
+        />
+        <button type="submit" className="btn btn-success" >Create Event</button>
+      </form>
     </div>
   )
 }

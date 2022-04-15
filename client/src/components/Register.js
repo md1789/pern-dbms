@@ -92,7 +92,7 @@ const Register = () => {
 
     const getUniverities = async () => {
         try {
-            const response = await axios.get("/universities",
+            const response = await axios.get("/superadmin",
                 JSON.stringify({ universities}),
                 {
                     headers: { 'Content-Type': 'application/json' },
@@ -199,7 +199,7 @@ const Register = () => {
                         </p>
                         
                         <div className="dropdown">
-                            <select className="form-select" onSelect={(e) => setUniversities(e.target.value)}>
+                            <select className="form-select">
                                 { universities.map(id => (
                                     <option value={id.university_name}>{id.university_name}</option>
                                 ))}
@@ -207,7 +207,7 @@ const Register = () => {
                         </div>
                         <br />
 
-                        <button type="submit" className="btn btn-success" disabled={!validName || !validPwd || !validMatch ? true : false} onClick={handleUser}>Sign Up</button>
+                        <button type="submit" className="btn btn-success" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />

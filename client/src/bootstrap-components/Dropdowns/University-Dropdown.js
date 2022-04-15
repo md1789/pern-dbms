@@ -11,7 +11,7 @@ const UniversityDropdown = () => {
 
     const getUniverities = async () => {
         try {
-            const response = await axios.get("/universities",
+            const response = await axios.get("/superadmin",
                 JSON.stringify({ universities}),
                 {
                     headers: { 'Content-Type': 'application/json' },

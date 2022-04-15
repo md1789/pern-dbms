@@ -130,3 +130,14 @@ INSERT INTO events(
 	event_name, name, category, "time", description, location, phone, email, date, rating_stars)
 	VALUES ('optics', 'CREOL Optics Day', 'private', '02:00', 'Meet withh Students, professors, and industrial members!' , (28.60137201783783, -81.19705121398373), '', 'benjamin.logan@knights.ucf.edu', '4/15/22', 5);
 
+INSERT INTO .events(
+	event_name, name, category, "time", description, location, phone, email, date, rating_stars, university_name)
+	VALUES ('study_abroad', 'MSPSIA Success Series: Study Abroad', 'public', '12:00', 'Join us to learn more about study abroad opportunities and exchange programs offered to SPSIA students.', (0, 0), '', 'Nicholas.Schenk@ucf.edu', '4/14/22', 4, 'UCF');
+
+INSERT INTO events(
+	event_name, name, category, "time", description, location, phone, email, date, rating_stars, university_name)
+	VALUES ('marketing', 'Marketing for Business Success', 'public', '10:00 am', 'A webinar providing an overview of the marketing process for small business, as well as a close look at all elements of a marketing plan.', (0, 0), '4074204430', 'Jean.Hill@ucf.edu', '4/14/22', 5, 'UCF');
+
+INSERT INTO events(
+	event_name, name, category, "time", description, location, phone, email, date, rating_stars, university_name)
+	VALUES ('coffee', 'Coffee With a Cop', 'public', '10:00 am', 'This is a chance for the UCF community to enjoy free coffee from Starbucks in the Student Union and talk with UCF police officers', (28.601813666642222, -81.20042098062984), '', 'Amanda.Sellers@ucf.edu', '4/14/22', 5, 'UCF');
