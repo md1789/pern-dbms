@@ -13,8 +13,9 @@ const registerController = require('./controllers/registerController');
 app.use(logger);
 app.use(express.static(path));
 const corsCred = app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
 //app.use(express.json());
 
@@ -91,7 +92,7 @@ app.get('/users/:id', async(req, res) => {
 });
 
 // create a university
-app.post('/universities', async(req, res) => {
+app.post('/superadmin', async(req, res) => {
     try {
         console.log(req.body);
         const newUniversity = await pool.query('INSERT INTO university (university_name, address) VALUES ($1, $2)', [university_name, address]);
@@ -102,7 +103,7 @@ app.post('/universities', async(req, res) => {
 })
 
 // get universities
-app.get('/universities', async(req, res) => {
+app.get('/superadmin', async(req, res) => {
     try {
        const allUniversities = await pool.query('SELECT * FROM university');
        res.json(allUniversities.rows); 
