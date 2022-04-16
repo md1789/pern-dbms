@@ -8,9 +8,9 @@ const NewRSONavbar = () => {
   const [num_members, setNumMembers] = useState([]);
 
 
-  const createEvent = async () => {
+  const createRSO = async () => {
     try {
-      const response = await axios.post("/events",
+      const response = await axios.post("/rsos",
           JSON.stringify({rso_name, num_members}),
           {
               headers: { 'Content-Type': 'application/json' },
@@ -27,7 +27,7 @@ const NewRSONavbar = () => {
 
   return (
     <div>
-      <form onSubmit={createEvent}>
+      <form onSubmit={createRSO}>
         <label htmlFor="rso_name">RSO Name:</label>
         <input 
           type="text" 
