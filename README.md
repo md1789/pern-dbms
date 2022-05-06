@@ -1,7 +1,7 @@
 # UCF REGISTERED STUDENT ORGANIZATION AND EVENT MANAGER APPLICATION
 ### This is an undergraduate project made for my database systems class taught by Professor Vu.
 ### The project description is as follows:
-### You  are  asked  to  implement  a  web-based  application  that  solves  the  problems.      Any  student 
+You  are  asked  to  implement  a  web-based  application  that  solves  the  problems.      Any  student 
 (user)  may  register  with  the  application  to  obtain  a  user  ID  and  a  password.  There  are  three 
 user  levels:  super  admin  who  creates  a  profile  for  a  university  (name,  location,  description, 
 number of students, pictures, etc.), admin who owns an RSO and may host events, and student 
